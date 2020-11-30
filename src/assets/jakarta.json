@@ -1,0 +1,167 @@
+{
+    "nama": "jakarta",
+    "kabupaten": [
+        {
+            "nama": "jakarta pusat",
+            "kecamatan": [
+                {
+                    "nama": "cempaka putih"
+                },
+                {
+                    "nama": "gambir"
+                },
+                {
+                    "nama": "johar baru"
+                },
+                {
+                    "nama": "kemayoran"
+                },
+                {
+                    "nama": "menteng"
+                },
+                {
+                    "nama": "sawah besar"
+                },
+                {
+                    "nama": "senen"
+                },
+                {
+                    "nama": "tanah abang"
+                }
+            ]
+        },
+        {
+            "nama": "jakarta utara",
+            "kecamatan": [
+                {
+                    "nama": "cilincing"
+                },
+                {
+                    "nama": "kelapa gading"
+                },
+                {
+                    "nama": "koja"
+                },
+                {
+                    "nama": "pademangan"
+                },
+                {
+                    "nama": "penjaringan"
+                },
+                {
+                    "nama": "tanjung priok"
+                }
+            ]
+        },
+        {
+            "nama": "jakarta barat",
+            "kecamatan": [
+                {
+                    "nama": "cengkareng"
+                },
+                {
+                    "nama": "grogol petamburan"
+                },
+                {
+                    "nama": "kali deres"
+                },
+                {
+                    "nama": "kebun jeruk"
+                },
+                {
+                    "nama": "kembangan"
+                },
+                {
+                    "nama": "palmerah"
+                },
+                {
+                    "nama": "taman sari"
+                },
+                {
+                    "nama": "tambora"
+                }
+            ]
+        },
+        {
+            "nama": "jakarta selatan",
+            "kecamatan": [
+                {
+                    "nama": "cilandak"
+                },
+                {
+                    "nama": "jagakarsa"
+                },
+                {
+                    "nama": "kebayoran baru"
+                },
+                {
+                    "nama": "kebayoran lama"
+                },
+                {
+                    "nama": "mampang prapatan"
+                },
+                {
+                    "nama": "pancoran"
+                },
+                {
+                    "nama": "pasar minggu"
+                },
+                {
+                    "nama": "pesanggrahan"
+                },
+                {
+                    "nama": "setiabudi"
+                },
+                {
+                    "nama": "tebet"
+                }
+            ]
+        },
+        {
+            "nama": "jakarta timur",
+            "kecamatan": [
+                {
+                    "nama": "cakung"
+                },
+                {
+                    "nama": "cipayung"
+                },
+                {
+                    "nama": "ciracas"
+                },
+                {
+                    "nama": "duren sawit"
+                },
+                {
+                    "nama": "jatinegara"
+                },
+                {
+                    "nama": "kramat jati"
+                },
+                {
+                    "nama": "makasar"
+                },
+                {
+                    "nama": "matraman"
+                },
+                {
+                    "nama": "pasar rebo"
+                },
+                {
+                    "nama": "pulo gadung"
+                }
+            ]
+        },
+        {
+            "nama": "kepulauan seribu",
+            "kecamatan": [
+                {
+                    "nama": "kep. seribu selatan"
+                },
+                {
+                    "nama": "kep. seribu utara"
+                }
+            ]
+        }
+    ]
+}
