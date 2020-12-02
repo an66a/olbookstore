@@ -1,11 +1,11 @@
 package com.g2academy.olbookstore.service;
 
+import com.g2academy.olbookstore.mapper.WarehouseBookMapper;
 import com.g2academy.olbookstore.mapper.WarehouseMapper;
 import com.g2academy.olbookstore.model.Book;
 import com.g2academy.olbookstore.model.Warehouse;
 import com.g2academy.olbookstore.model.WarehouseBook;
 import com.g2academy.olbookstore.repository.BookRepo;
-import com.g2academy.olbookstore.repository.WHBookRepo;
 import com.g2academy.olbookstore.repository.WarehouseRepo;
 import com.g2academy.olbookstore.service.dto.WarehouseBookDto;
 import com.g2academy.olbookstore.service.dto.WarehouseDto;
@@ -20,13 +20,10 @@ public class WarehouseService {
 
     private final WarehouseRepo warehouseRepo;
 
-    private final WHBookRepo whBookRepo;
-
     private final BookRepo bookRepo;
 
-    WarehouseService(WarehouseRepo warehouseRepo, WHBookRepo whBookRepo, BookRepo bookRepo) {
+    WarehouseService(WarehouseRepo warehouseRepo, BookRepo bookRepo) {
         this.warehouseRepo = warehouseRepo;
-        this.whBookRepo = whBookRepo;
         this.bookRepo = bookRepo;
     }
 
@@ -41,13 +38,19 @@ public class WarehouseService {
     public ResponseEntity<?> findById(Long warehouseId) {
         Warehouse warehouse = warehouseRepo.findById(warehouseId).orElse(null);
         if (warehouse == null) return new CustomResponse().warehouseNotFound();
-        return ResponseEntity.ok(WarehouseMapper.INSTANCE.toDtoWithBooks(warehouse));
+        return ResponseEntity.ok(WarehouseMapper.INSTANCE.toDto(warehouse));
+    }
+
+    public ResponseEntity<?> getBooks(Long warehouseId) {
+        Warehouse warehouse = warehouseRepo.findById(warehouseId).orElse(null);
+        if (warehouse == null) return new CustomResponse().warehouseNotFound();
+        return ResponseEntity.ok(WarehouseBookMapper.INSTANCE.toDtos(warehouse.getWh_books()));
     }
 
     public ResponseEntity<?> findByCodename(String codename) {
         Warehouse warehouse = warehouseRepo.findByCodename(codename).orElse(null);
         if (warehouse == null) return new CustomResponse().warehouseNotFound();
-        return ResponseEntity.ok(WarehouseMapper.INSTANCE.toDtoWithBooks(warehouse));
+        return ResponseEntity.ok(WarehouseMapper.INSTANCE.toDto(warehouse));
     }
 
     public ResponseEntity<?> add(WarehouseDto warehouseDto) {
