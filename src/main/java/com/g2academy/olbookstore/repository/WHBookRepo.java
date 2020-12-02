@@ -8,6 +8,7 @@ import java.util.List;
 
 @Repository
 public interface WHBookRepo extends JpaRepository<WarehouseBook, Long> {
+    List<WarehouseBook> findByWarehouse_Id(Long warehouseId);
     List<WarehouseBook> findByBook_Title(String title);
     List<WarehouseBook> findByBook_Isbn(String isbn);
     List<WarehouseBook> findByBook_Author_Id(Long authorId);

@@ -102,4 +102,8 @@ public class WarehouseBookService {
     public ResponseEntity<List<WarehouseBookDto>> findByBookPublisherId(Long id) {
         return ResponseEntity.ok(WarehouseBookMapper.INSTANCE.toDtos(whBookRepo.findByBook_Publisher_Id(id)));
     }
+
+    public ResponseEntity<List<WarehouseBookDto>> findByWarehouseId(Long id) {
+        return ResponseEntity.ok(WarehouseBookMapper.INSTANCE.toDtos(whBookRepo.findByWarehouse_Id(id)));
+    }
 }

@@ -28,6 +28,11 @@ public class WarehouseBookController {
         return whBookService.findById(warehouseId);
     }
 
+    @GetMapping(params = "warehouseId")
+    public ResponseEntity<List<WarehouseBookDto>> findByWarehouseId(@RequestParam Long warehouseId) {
+        return whBookService.findByWarehouseId(warehouseId);
+    }
+
     @GetMapping(params = "title")
     public ResponseEntity<List<WarehouseBookDto>> findByBookTitle(@RequestParam String title) {
         return whBookService.findByBookTitle(title);

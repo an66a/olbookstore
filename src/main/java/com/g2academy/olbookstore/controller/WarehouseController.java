@@ -31,11 +31,11 @@ public class WarehouseController {
 
     @GetMapping("/{id}/books")
     public ResponseEntity<?> getBooks(@PathVariable("id") Long id){
-        return warehouseService.findById(id);
+        return warehouseService.getBooks(id);
     }
 
     @GetMapping(params = "codename")
-    public ResponseEntity<?> findOne(@RequestParam String codename){
+    public ResponseEntity<?> findByCodename(@RequestParam String codename){
         return warehouseService.findByCodename(codename);
     }
 
