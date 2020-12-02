@@ -94,7 +94,7 @@ public class WarehouseService {
     public ResponseEntity<?> update(Long id, WarehouseDto warehouseDto) {
         Warehouse warehouseEntity = warehouseRepo.findById(id).orElse(null);
         if (warehouseEntity == null) return new CustomResponse().warehouseNotFound();
-        if (warehouseDto.getCodename() != null) warehouseEntity.setCodename(warehouseDto.getPhone());
+        if (warehouseDto.getCodename() != null) warehouseEntity.setCodename(warehouseDto.getCodename());
         if (warehouseDto.getAddress() != null) warehouseEntity.setAddress(warehouseDto.getAddress());
         if (warehouseDto.getPhone() != null) warehouseEntity.setPhone(warehouseDto.getPhone());
 
