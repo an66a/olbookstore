@@ -27,7 +27,7 @@ public class WarehouseService {
     WarehouseService(WarehouseRepo warehouseRepo, WHBookRepo whBookRepo, BookRepo bookRepo) {
         this.warehouseRepo = warehouseRepo;
         this.whBookRepo = whBookRepo;
-        this. bookRepo = bookRepo;
+        this.bookRepo = bookRepo;
     }
 
     private Warehouse save(Warehouse entity) {
@@ -40,13 +40,13 @@ public class WarehouseService {
 
     public ResponseEntity<?> findById(Long warehouseId) {
         Warehouse warehouse = warehouseRepo.findById(warehouseId).orElse(null);
-        if (warehouse == null) return  new CustomResponse().warehouseNotFound();
+        if (warehouse == null) return new CustomResponse().warehouseNotFound();
         return ResponseEntity.ok(WarehouseMapper.INSTANCE.toDtoWithBooks(warehouse));
     }
 
     public ResponseEntity<?> findByCodename(String codename) {
         Warehouse warehouse = warehouseRepo.findByCodename(codename).orElse(null);
-        if (warehouse == null) return  new CustomResponse().warehouseNotFound();
+        if (warehouse == null) return new CustomResponse().warehouseNotFound();
         return ResponseEntity.ok(WarehouseMapper.INSTANCE.toDtoWithBooks(warehouse));
     }
 
@@ -75,13 +75,16 @@ public class WarehouseService {
         if (book == null) return new CustomResponse().bookNotFound();
         Warehouse warehouse = warehouseRepo.findById(warehouseId).orElse(null);
         if (warehouse == null) return new CustomResponse().warehouseNotFound();
-
-        WarehouseBook whBookEntity = WarehouseBook.builder()
-                .book(book)
-                .quantity(whBookDto.getQuantity())
-                .build();
-        warehouse.addWHBook(whBookEntity);
-
+        WarehouseBook whBook = warehouse.getWhBookByBookId(whBookDto.getBookId());
+        if (whBook == null) {
+            WarehouseBook whBookEntity = WarehouseBook.builder()
+                    .book(book)
+                    .quantity(whBookDto.getQuantity())
+                    .build();
+            warehouse.addWHBook(whBookEntity);
+        } else {
+            whBook.setQuantity(whBookDto.getQuantity());
+        }
         return ResponseEntity.ok(this.save(warehouse));
     }
 

@@ -11,10 +11,10 @@ create table transaction (id bigint not null auto_increment, created datetime, c
 create table transaction_item (id bigint not null auto_increment, created datetime, created_by varchar(255), last_modified datetime, last_modified_by varchar(255), quantity integer, book_id bigint, transaction_id bigint not null, primary key (id)) engine=InnoDB;
 create table transaction_items_audit (id bigint not null, rev integer not null, revtype tinyint, quantity integer, book_id bigint, transaction_id bigint, primary key (id, rev)) engine=InnoDB;
 create table transactions_audit (id bigint not null, rev integer not null, revtype tinyint, customer_id bigint, primary key (id, rev)) engine=InnoDB;
-create table warehouse_books (id bigint not null auto_increment, created datetime, created_by varchar(255), last_modified datetime, last_modified_by varchar(255), quantity integer, book_id bigint, warehouse_id bigint not null, primary key (id)) engine=InnoDB;
 create table warehouse_books_audit (id bigint not null, rev integer not null, revtype tinyint, quantity integer, book_id bigint, warehouse_id bigint, primary key (id, rev)) engine=InnoDB;
-create table warehouses (id bigint not null auto_increment, created datetime, created_by varchar(255), last_modified datetime, last_modified_by varchar(255), address varchar(255), phone varchar(255), primary key (id)) engine=InnoDB;
-create table warehouses_audit (id bigint not null, rev integer not null, revtype tinyint, address varchar(255), phone varchar(255), primary key (id, rev)) engine=InnoDB;
+create table warehouses (id bigint not null auto_increment, created datetime, created_by varchar(255), last_modified datetime, last_modified_by varchar(255), address varchar(255), codename varchar(255), phone varchar(255), primary key (id)) engine=InnoDB;
+create table warehouses_audit (id bigint not null, rev integer not null, revtype tinyint, address varchar(255), codename varchar(255), phone varchar(255), primary key (id, rev)) engine=InnoDB;
+create table wh_books (id bigint not null auto_increment, created datetime, created_by varchar(255), last_modified datetime, last_modified_by varchar(255), quantity integer, book_id bigint, warehouse_id bigint not null, primary key (id)) engine=InnoDB;
 alter table authors_audit add constraint FK4h9eexvqe2tf95cot5h3lmj2f foreign key (rev) references revinfo (rev);
 alter table books add constraint FKfjixh2vym2cvfj3ufxj91jem7 foreign key (author_id) references authors (id);
 alter table books add constraint FKayy5edfrqnegqj3882nce6qo8 foreign key (publisher_id) references publishers (id);
@@ -26,7 +26,6 @@ alter table transaction_item add constraint FK9ybjrwtlkrgl7adwh7lde5np4 foreign 
 alter table transaction_item add constraint FK1wc2dvhj3oos47in473fqi3q8 foreign key (transaction_id) references transaction (id);
 alter table transaction_items_audit add constraint FK5pto4l39bs3j838ttv3x5ngrn foreign key (rev) references revinfo (rev);
 alter table transactions_audit add constraint FKf90u6a4gsptmq5lwbpbd9c78l foreign key (rev) references revinfo (rev);
-alter table warehouse_books add constraint FKi1euw05gm0yxv109rncro00y2 foreign key (book_id) references books (id);
-alter table warehouse_books add constraint FKlpyljyncrntrvjc1l7p01l689 foreign key (warehouse_id) references warehouses (id);
 alter table warehouse_books_audit add constraint FKi148dp5qvr0ter3fxhc8re1bj foreign key (rev) references revinfo (rev);
 alter table warehouses_audit add constraint FKt98ml3inrn1yn4mkl342v0f1l foreign key (rev) references revinfo (rev);
+alter table wh_books add constraint FKh84non5udt0hswum2qgppc7ev foreign key (book_id) references books (id);

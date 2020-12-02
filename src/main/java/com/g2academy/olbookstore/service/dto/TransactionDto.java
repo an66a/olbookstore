@@ -22,6 +22,7 @@ public class TransactionDto {
     private String customerEmail;
     @JsonInclude(JsonInclude.Include.NON_NULL)
     private String customerAddress;
+
     private List<TransactionItemDto> transactionItems;
     private Long totalTransactionPrice;
 }

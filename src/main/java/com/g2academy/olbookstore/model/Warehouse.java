@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 import org.hibernate.envers.AuditTable;
 import org.hibernate.envers.Audited;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -42,5 +43,17 @@ public class Warehouse extends BaseEntity<String> implements Serializable {
         if (wh_books == null) this.wh_books = new ArrayList<>();
         this.wh_books.add(warehouseBook);
         warehouseBook.setWarehouse(this);
+    }
+
+    @Transactional
+    public WarehouseBook getWhBookByBookId(Long bookId){
+        WarehouseBook whBook = null;
+        for (int i = 0; i < wh_books.size(); i++) {
+            if (wh_books.get(i).getId().equals(bookId)) {
+                whBook = wh_books.get(i);
+                break;
+            }
+        }
+        return  whBook;
     }
 }
