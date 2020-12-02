@@ -1,0 +1,4 @@
+insert into publishers (created, created_by, last_modified, last_modified_by, address, name, phone, url) values ('2020-11-01', '', '2020-11-01', '', 'Jakarta', 'Gramedia', '+62-88-999', 'www.gramedia.com');
+insert into authors (created, created_by, last_modified, last_modified_by, address, email, first_name, last_name, url) values ('2020-11-01', '', '2020-11-01', '', 'Entah Dimana', 'penulis@mail.com', 'Penulis', 'Cerita', 'www.penulis.com');
+insert into books (created, created_by, last_modified, last_modified_by, author_id, isbn, price, published_on, publisher_id, title) values ('2020-11-01', '', '2020-11-01', '', 1, '99-434-3-434', 20000.0, '2020-10', 1, 'Gemuruh Resah');
+insert into customers (created, created_by, last_modified, last_modified_by, address, email, name, phone) values ('2020-11-01', '', '2020-11-01', '', 'Bandung', 'customer@mail.com', 'customer', '+62-88-434');
