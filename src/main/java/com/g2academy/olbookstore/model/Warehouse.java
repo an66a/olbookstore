@@ -49,7 +49,7 @@ public class Warehouse extends BaseEntity<String> implements Serializable {
     public WarehouseBook getWhBookByBookId(Long bookId){
         WarehouseBook whBook = null;
         for (int i = 0; i < wh_books.size(); i++) {
-            if (wh_books.get(i).getId().equals(bookId)) {
+            if (wh_books.get(i).getBook().getId().equals(bookId)) {
                 whBook = wh_books.get(i);
                 break;
             }
