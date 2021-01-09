@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { FormComp } from '../../components'
 import { addFormInput } from '../../mod'
 import { addWarehouse } from '../../actions/addDataAction'

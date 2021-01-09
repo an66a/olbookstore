@@ -1,7 +1,6 @@
 import React from 'react'
 import { Table } from '../components'
 import { useSelector } from 'react-redux';
-import { ButtonLink } from '../components/elements'
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 50 },

@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback } from 'react'
+import React, { useCallback } from 'react'
 import { Table } from '../components'
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
