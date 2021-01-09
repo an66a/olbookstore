@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { Table } from '../components'
 import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -22,7 +22,7 @@ const columns = [
   }
 ];
 
-const AuthorPage = () => {
+const AuthorPage = (props) => {
   const getAuthors = useSelector(state => state.data.getAuthors);
   const history = useHistory();
 
@@ -33,7 +33,7 @@ const AuthorPage = () => {
 
   return (
     <>
-      <Table data={getAuthors} columns={columns} rowClick={(el) => handleOnClick(el)} />
+      <Table data={getAuthors} columns={columns} rowClick={(data) => handleOnClick(data)} />
     </>
   )
 }

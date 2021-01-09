@@ -8,11 +8,14 @@ export const GET_BOOKS_STOCK = "GET_BOOKS_STOCK";
 export const GET_CUSTOMERS = "GET_CUSTOMERS";
 export const GET_ORDERS = "GET_ORDERS";
 
-const getDataRest = (path, type) => {
+const getData = (path, type) => {
     return (dispatch) => {
-        axios.get('http://localhost:8899' + path)
-        // axios.get('https://olbookstore.herokuapp.com/' + path)
+        axios.get('https://olbookstore.herokuapp.com' + path)
+            // axios.get('http://localhost:8899' + path)
             .then(res => {
+                res.data.sort((function (a, b) {
+                    return a.id - b.id;
+                }))
                 dispatch({
                     type: type,
                     payload: {
@@ -26,42 +29,72 @@ const getDataRest = (path, type) => {
 
 export const getPublishers = () => {
     return (dispatch) => {
-        dispatch(getDataRest("/publishers", GET_PUBLISHERS));
+        dispatch(getData("/publishers", GET_PUBLISHERS));
     }
 }
 
 export const getAuthors = () => {
     return (dispatch) => {
-        dispatch(getDataRest("/authors", GET_AUTHORS));
+        dispatch(getData("/authors", GET_AUTHORS));
     }
 }
 
 export const getBooks = () => {
     return (dispatch) => {
-        dispatch(getDataRest("/books", GET_BOOKS));
+        dispatch(getData("/books", GET_BOOKS));
     }
 }
 
 export const getWarehouses = () => {
     return (dispatch) => {
-        dispatch(getDataRest("/warehouses", GET_WAREHOUSES));
+        dispatch(getData("/warehouses", GET_WAREHOUSES));
     }
 }
 
 export const getBooksStock = () => {
     return (dispatch) => {
-        dispatch(getDataRest("books-stock", GET_BOOKS_STOCK));
+        dispatch(getData("/wh-books", GET_BOOKS_STOCK));
     }
 }
 
 export const getCustomers = () => {
     return (dispatch) => {
-        dispatch(getDataRest("/customers", GET_CUSTOMERS));
+        dispatch(getData("/customers", GET_CUSTOMERS));
     }
 }
 
 export const getOrders = () => {
     return (dispatch) => {
-        dispatch(getDataRest("/orders", GET_ORDERS));
+        dispatch(getData("/transactions", GET_ORDERS));
     }
+}
+
+// GET DATA BY ID
+const getDataById = async (path) => {
+    try {
+        const res = await axios.get('https://olbookstore.herokuapp.com' + path);
+        return res;
+    } catch (error) {
+        return error.response
+    }
+}
+
+export const getAuthorById = async (id) => {
+    return await getDataById("/authors/" + id);
+}
+
+export const getPublisherById = async (id) => {
+    return await getDataById("/publishers/" + id);
+}
+
+export const getBookById = async (id) => {
+    return await getDataById("/books/" + id);
+}
+
+export const getWarehouseById = async (id) => {
+    return await getDataById("/warehouses/" + id);
+}
+
+export const getCustomerById = async (id) => {
+    return await getDataById("/customers/" + id);
 }

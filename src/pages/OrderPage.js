@@ -22,6 +22,7 @@ const columns = [
 
 const OrderPage = () => {
     const getOrders = useSelector(state => state.data.getOrders);
+    console.log(getOrders);
     return (
         <Table data={getOrders} columns={columns} />
     )

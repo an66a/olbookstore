@@ -1,7 +1,7 @@
 import React, { useCallback } from 'react'
 import { Table } from '../components'
 import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom'
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 50 },
@@ -35,11 +35,10 @@ const PublisherPage = () => {
     pathname: history.location.pathname + '/id' + data.id,
     data: data
   }), [history]);
+  
   return (
     <>
-      <div>
         <Table data={getPublishers} columns={columns} rowClick={(el) => handleOnClick(el)} />
-      </div>
     </>
   );
 }

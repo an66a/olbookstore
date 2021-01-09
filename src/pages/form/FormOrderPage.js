@@ -13,7 +13,7 @@ const formInput = [
     addInput('number', 'Book Quantity', 'quantity'),
 ]
 
-const CreateOrderPage = () => {
+const FormOrderPage = () => {
 
     return (
         <>
@@ -22,4 +22,4 @@ const CreateOrderPage = () => {
     )
 }
 
-export default CreateOrderPage
+export default FormOrderPage

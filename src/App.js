@@ -1,12 +1,10 @@
 import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom"
 import { Home, DashboardPage, PublisherPage, AuthorPage, BookPage, WarehousePage, CustomerPage, OrderPage } from './pages/'
-import { CreatePublisherPage, CreateWarehousePage, CreateAuthorPage, CreateBookPage, CreateOrderPage } from './pages/create'
-import { AuthorDetail, PublisherDetail, OrderDetail } from './pages/detail'
+import { FormPublisherPage, FormWarehousePage, FormAuthorPage, FormBookPage, FormCustomerPage, FormOrderPage } from './pages/form'
 import { Base } from './components'
 import { getPublishers, getAuthors, getBooks, getCustomers, getOrders, getWarehouses, getBooksStock } from './actions/getDataAction'
-import { useDispatch, useSelector } from 'react-redux'
-import CreateCustomerPage from './pages/create/CreateCustomerPage'
+import { useDispatch } from 'react-redux'
 
 const App = (props) => {
   const dispatch = useDispatch();
@@ -37,8 +35,8 @@ const App = (props) => {
                 render={({ match: { url } }) => (
                   <>
                     <Route path={`${url}/`} component={PublisherPage} exact />
-                    <Route path={`${url}/add`} component={CreatePublisherPage} exact />
-                    <Route path={`${url}/id:id`} component={PublisherDetail} exact />
+                    <Route path={`${url}/add`} component={FormPublisherPage} exact />
+                    <Route path={`${url}/id:id`} component={FormPublisherPage} exact />
                   </>
                 )} />
               <Route
@@ -46,8 +44,8 @@ const App = (props) => {
                 render={({ match: { url } }) => (
                   <>
                     <Route path={`${url}/`} component={AuthorPage} exact />
-                    <Route path={`${url}/add`} component={CreateAuthorPage} exact />
-                    <Route path={`${url}/id:id`} component={AuthorDetail} exact />
+                    <Route path={`${url}/add`} component={FormAuthorPage} exact />
+                    <Route path={`${url}/id:id`} component={FormAuthorPage} exact />
                   </>
                 )} />
               <Route
@@ -55,7 +53,8 @@ const App = (props) => {
                 render={({ match: { url } }) => (
                   <>
                     <Route path={`${url}/`} component={BookPage} exact />
-                    <Route path={`${url}/add`} component={CreateBookPage} exact />
+                    <Route path={`${url}/add`} component={FormBookPage} exact />
+                    <Route path={`${url}/id:id`} component={FormBookPage} exact />
                   </>
                 )} />
               <Route
@@ -63,7 +62,8 @@ const App = (props) => {
                 render={({ match: { url } }) => (
                   <>
                     <Route path={`${url}/`} component={CustomerPage} exact />
-                    <Route path={`${url}/add`} component={CreateCustomerPage} exact />
+                    <Route path={`${url}/add`} component={FormCustomerPage} exact />
+                    <Route path={`${url}/id:id`} component={FormCustomerPage} exact />
                   </>
                 )} />
               <Route
@@ -71,8 +71,8 @@ const App = (props) => {
                 render={({ match: { url } }) => (
                   <>
                     <Route path={`${url}/`} component={OrderPage} exact />
-                    <Route path={`${url}/add`} component={CreateOrderPage} exact />
-                    <Route path={`${url}/id:id`} component={OrderDetail} exact />
+                    <Route path={`${url}/add`} component={FormOrderPage} exact />
+                    <Route path={`${url}/id:id`} component={FormOrderPage} exact />
                   </>
                 )} />
               <Route
@@ -80,7 +80,8 @@ const App = (props) => {
                 render={({ match: { url } }) => (
                   <>
                     <Route path={`${url}/`} component={WarehousePage} exact />
-                    <Route path={`${url}/add`} component={CreateWarehousePage} exact />
+                    <Route path={`${url}/add`} component={FormWarehousePage} exact />
+                    <Route path={`${url}/id:id`} component={FormWarehousePage} exact />
                   </>
                 )} />
             </>

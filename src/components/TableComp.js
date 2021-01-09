@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback } from 'react'
+import React, { useState, useEffect } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
@@ -8,13 +8,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import Modal from '@material-ui/core/Modal';
-import Backdrop from '@material-ui/core/Backdrop';
-import Fade from '@material-ui/core/Fade';
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
-import { Link } from 'react-router-dom';
-
+import { useHistory } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,13 +27,27 @@ const useStyles = makeStyles((theme) => ({
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
-  },
+  }
 }));
 
 const TableComp = (props) => {
   const classes = useStyles();
+  const history = useHistory();
+
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [rowsPerPage, setRowsPerPage] = useState(10);
+
+  const currentPath = () => {
+    const pathname = window.location.pathname;
+    const splitPath = pathname.split('/');
+    return splitPath[1];
+  }
+
+  const saveTableState = () => {
+    const path = currentPath();
+    const tableState = { path, page, rowsPerPage };
+    sessionStorage.setItem('tableState', JSON.stringify(tableState));
+  }
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -50,9 +58,23 @@ const TableComp = (props) => {
     setPage(0);
   };
 
-
   const columns = props.columns;
-  const data = props.data
+  const data = props.data;
+
+  useEffect(() => {
+    if (sessionStorage.tableState) {
+      const tableState = JSON.parse(sessionStorage.tableState);
+      if (currentPath() !== tableState.path) {
+        sessionStorage.clear();
+      } else {
+        setPage(tableState.page)
+        setRowsPerPage(tableState.rowsPerPage)
+      }
+    }
+    return () => {
+
+    }
+  }, [])
 
   return (
     <>
@@ -76,11 +98,12 @@ const TableComp = (props) => {
               <TableBody>
                 {data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
                   return (
-
                     <TableRow hover role="checkbox" tabIndex={-1} key={row.id}
+                      style={{ cursor: 'pointer' }}
                       onClick={() => {
+                        saveTableState();
                         if (props.rowClick) {
-                          props.rowClick(row)
+                          props.rowClick(row);
                         }
                       }}>
                       {columns.map((column, index) => {
@@ -109,40 +132,6 @@ const TableComp = (props) => {
             onChangeRowsPerPage={handleChangeRowsPerPage}
           /> : null}
       </Paper>
-      {/* 
-      {open ?
-        <Modal
-          aria-labelledby="transition-modal-title"
-          aria-describedby="transition-modal-description"
-          className={classes.modal}
-          open
-          onClose={handleClose}
-          closeAfterTransition
-          BackdropComponent={Backdrop}
-          BackdropProps={{
-            timeout: 500,
-          }}
-        >
-
-          <Fade in={true}>
-            <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-              <Button>Edit</Button>
-              <Button onClick={() => {
-                let answer = window.confirm("Are you sure delete this data?");
-                if (answer) {
-                  // Save it!
-                  console.log('Thing was saved to the database.');
-                  handleClose();
-                } else {
-                  // Do nothing!
-                  console.log('Thing was not saved to the database.');
-                }
-              }}>Delete</Button>
-            </ButtonGroup>
-          </Fade>
-        </Modal>
-        : null} */}
-
     </>
   )
 }

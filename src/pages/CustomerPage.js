@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useCallback } from 'react'
 import { Table } from '../components'
-import { useSelector } from 'react-redux';
-import { ButtonLink } from '../components/elements'
+import { useSelector } from 'react-redux'
+import { useHistory } from 'react-router-dom'
 
 const columns = [
   { id: 'id', label: 'ID', minWidth: 50 },
@@ -27,13 +27,20 @@ const columns = [
 ];
 
 const CustomerPage = () => {
-    const getCustomers = useSelector(state => state.data.getCustomers);
-    return (
-      <>
-    
-        <Table data={getCustomers} columns={columns} />
-        </>
-    )
+  const getCustomers = useSelector(state => state.data.getCustomers);
+
+  const history = useHistory();
+
+  const handleOnClick = useCallback((data) => history.push({
+    pathname: history.location.pathname + '/id' + data.id,
+    data: data
+  }), [history]);
+
+  return (
+    <>
+      <Table data={getCustomers} columns={columns} rowClick={(el) => handleOnClick(el)} />
+    </>
+  )
 }
 
 export default CustomerPage

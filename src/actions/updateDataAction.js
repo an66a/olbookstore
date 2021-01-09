@@ -2,7 +2,8 @@ import axios from 'axios'
 
 const updateData = async (path, data) => {
     try {
-        const response = await axios.put('http://localhost:8899' + path, data);
+        const response = await axios.put('https://olbookstore.herokuapp.com' + path, data);
+        // const response = await axios.put('http://localhost:8899' + path, data);
         return response;
     } catch (error) {
         return error.response;

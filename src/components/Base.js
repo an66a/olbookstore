@@ -24,7 +24,7 @@ import BusinessIcon from '@material-ui/icons/Business';
 import HomeIcon from '@material-ui/icons/Home';
 import AddBoxIcon from '@material-ui/icons/AddBox';
 import { Link } from 'react-router-dom';
-import { BackButton, ButtonLink } from './elements'
+import { ButtonLink } from './elements'
 
 const drawerWidth = 240;
 
@@ -243,11 +243,11 @@ export default function Base(props) {
                 <div className={classes.toolbar} />
                 {((props.location.pathname).slice(1)) !== 'dashboard' ?
                     <>
-                        {((props.location.pathname).split('/'))[2] === 'add' ?
+                        {/* {((props.location.pathname).split('/'))[2] === 'add' ?
                             <div className={classes.marginBottom}>
                                 <BackButton />
                             </div>
-                            : null}
+                            : null} */}
 
                         {((props.location.pathname).split('/')).length === 2 ?
                             <div className={classes.marginBottom}>
