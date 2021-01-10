@@ -12,6 +12,7 @@ import com.g2academy.olbookstore.repository.TransactionRepo;
 import com.g2academy.olbookstore.service.dto.TransactionDto;
 import com.g2academy.olbookstore.service.dto.TransactionItemDto;
 import com.g2academy.olbookstore.service.response.CustomResponse;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +41,7 @@ public class TransactionService {
     }
 
     public ResponseEntity<List<TransactionDto>> findAll() {
-        return ResponseEntity.ok(TransactionMapper.INSTANCE.toDtos(transactionRepo.findAll()));
+        return ResponseEntity.ok(TransactionMapper.INSTANCE.toDtos(transactionRepo.findAll(Sort.by(Sort.Direction.ASC, "id"))));
     }
 
     public ResponseEntity<List<TransactionDto>> findByCutomerId(Long id) {

@@ -9,6 +9,7 @@ import com.g2academy.olbookstore.repository.PublisherRepo;
 import com.g2academy.olbookstore.service.dto.AuthorDto;
 import com.g2academy.olbookstore.service.dto.BookDto;
 import com.g2academy.olbookstore.service.response.CustomResponse;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class AuthorService {
     }
 
     public ResponseEntity<List<AuthorDto>> findAll() {
-        return ResponseEntity.ok(AuthorMapper.INSTANCE.toDtos(authorRepo.findAll()));
+        return ResponseEntity.ok(AuthorMapper.INSTANCE.toDtos(authorRepo.findAll(Sort.by(Sort.Direction.ASC, "id"))));
     }
 
     public ResponseEntity<?> findById(Long id){

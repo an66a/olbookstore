@@ -5,6 +5,7 @@ import com.g2academy.olbookstore.model.Customer;
 import com.g2academy.olbookstore.repository.CustomerRepo;
 import com.g2academy.olbookstore.service.dto.CustomerDto;
 import com.g2academy.olbookstore.service.response.CustomResponse;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CustomerService {
     }
 
     public ResponseEntity<List<CustomerDto>> findAll() {
-        return ResponseEntity.ok(CustomerMapper.INSTANCE.toDtos(customerRepo.findAll()));
+        return ResponseEntity.ok(CustomerMapper.INSTANCE.toDtos(customerRepo.findAll(Sort.by(Sort.Direction.ASC, "id"))));
     }
 
     public ResponseEntity<?> findById(Long id) {

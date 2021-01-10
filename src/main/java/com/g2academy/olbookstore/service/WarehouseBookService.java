@@ -9,6 +9,7 @@ import com.g2academy.olbookstore.repository.WHBookRepo;
 import com.g2academy.olbookstore.repository.WarehouseRepo;
 import com.g2academy.olbookstore.service.dto.WarehouseBookDto;
 import com.g2academy.olbookstore.service.response.CustomResponse;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -78,7 +79,7 @@ public class WarehouseBookService {
     }
 
     public ResponseEntity<List<WarehouseBookDto>> all(){
-        return ResponseEntity.ok(WarehouseBookMapper.INSTANCE.toDtos(whBookRepo.findAll()));
+        return ResponseEntity.ok(WarehouseBookMapper.INSTANCE.toDtos(whBookRepo.findAll(Sort.by(Sort.Direction.ASC, "id"))));
     }
 
     public ResponseEntity<?> findById(Long id){
